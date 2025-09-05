@@ -1,0 +1,21 @@
+name: CD - Deploy to Azure
+
+on:
+  repository_dispatch:
+    types: [deploy]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: "my-first-app"
+          images: ${{ github.event.client_payload.image }}
