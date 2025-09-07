@@ -31,3 +31,13 @@ jobs:
       - name: Push Docker image
         run: |
           docker push $IMAGE_NAME
+
+      - name: Trigger CD pipeline
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          event-type: deploy
+          client-payload: '{"image":"${{ env.IMAGE_NAME }}"}'
+
+       
