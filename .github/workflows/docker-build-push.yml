@@ -20,7 +20,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          IMAGE_NAME=${{ secrets.AZURE_CONTAINER_REGISTRY }}/hello-node:${{ github.sha }}
+          IMAGE_NAME=${{ secrets.AZURE_CONTAINER_REGISTRY }}/hello-node:${{ github.ref_name }}
           docker build -t $IMAGE_NAME .
           echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
 
