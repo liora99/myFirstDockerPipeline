@@ -14,8 +14,12 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Set Docker image to deploy
+        run: |
+          echo "IMAGE_TO_DEPLOY=${{ github.event.client_payload.image }}" >> $GITHUB_ENV
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "my-first-app"
-          images: ${{ github.event.client_payload.image }}
+          app-name: "my-first-app"               
+          images: ${{ env.IMAGE_TO_DEPLOY }}  
