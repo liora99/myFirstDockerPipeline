@@ -1,20 +1,18 @@
-FROM node:18-alpine
+# Étape 1 : choisir l'image Node
+FROM node:20
 
-# Créer le dossier de travail
+# Étape 2 : définir le répertoire de travail
 WORKDIR /usr/src/app
 
-# Copier package.json et package-lock.json
-COPY package*.json ./myExpressApp/
+# Étape 3 : copier le dossier de l'application
+COPY myExpressApp/ ./myExpressApp
 
-# Installer les dépendances
+# Étape 4 : installer les dépendances
 RUN npm install --prefix myExpressApp
 
-# Copier tout le code
-COPY . .
+# Étape 5 : copier le reste du code si nécessaire
+# COPY . .
 
-# Exposer le port (Azure utilisera PORT de l'environnement)
-ENV PORT=8080
-EXPOSE 8080
-
-# Lancer le serveur depuis le bon dossier
-CMD ["node", "myExpressApp/bin/www"]
+# Étape 6 : exposer le port et définir la commande
+EXPOSE 3000
+CMD ["node", "myExpressApp/app.js"]
