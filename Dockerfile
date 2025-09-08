@@ -9,7 +9,7 @@ COPY myExpressApp/ ./myExpressApp
 RUN npm install --prefix myExpressApp
 
 # Exposer le port
-EXPOSE 3000
+EXPOSE 80
 
 # Démarrer le serveur via bin/www
 CMD ["node", "myExpressApp/bin/www"]
