@@ -1,15 +1,17 @@
+# Image Node officielle
 FROM node:20
 
+# Copier tout le projet dans le conteneur
+COPY myExpressApp /usr/src/app
+
+# Définir le dossier de travail dans le conteneur
 WORKDIR /usr/src/app
 
-# Copier le projet
-COPY myExpressApp/ ./myExpressApp
-
 # Installer les dépendances
-RUN npm install --prefix myExpressApp
+RUN npm install
 
-# Exposer le port
+# Exposer le port sur lequel l'app écoute
 EXPOSE 80
 
-# Démarrer le serveur via bin/www
-CMD ["node", "myExpressApp/bin/www"]
+# Démarrer le serveur
+CMD ["node", "bin/www"]
