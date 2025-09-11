@@ -23,7 +23,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.get('/test', (req, res) => {
-  res.send('Nouvelle version de l’app !!!');
+  res.send('Nouvelle version de l’app !!! please marche');
 });
 
 
