@@ -3,6 +3,7 @@ name: CD - Deploy to Azure
 on:
   repository_dispatch:
     types: [deploy]
+  workflow_dispatch:
 
 jobs:
   deploy:
